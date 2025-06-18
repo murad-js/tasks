@@ -1,4 +1,4 @@
-import { Thenable } from "./Thenable.js";
+import { Thenable } from './Thenable.js';
 
 export class Basket {
   #priceLimit = 0;
@@ -20,7 +20,7 @@ export class Basket {
     const newPrice = this.#currentPrice + item.price;
 
     if (newPrice > this.#priceLimit) {
-      this.#errors.push({ item, cause: "Not enough funds" });
+      this.#errors.push({ item, cause: 'Not enough funds' });
     } else {
       this.#items.push(item);
       this.#currentPrice = newPrice;
@@ -33,7 +33,7 @@ export class Basket {
     this.#resolve(this.toObject());
   }
 
-  toPromise() {
+  toThenable() {
     return this.#promise;
   }
 

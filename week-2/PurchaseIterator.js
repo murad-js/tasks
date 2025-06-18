@@ -1,4 +1,4 @@
-import { Thenable } from "./Thenable.js";
+import { Thenable } from './Thenable.js';
 
 export class PurchaseIterator {
   #goods;

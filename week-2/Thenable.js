@@ -4,7 +4,7 @@ export class Thenable {
   state = null;
 
   constructor(cb) {
-    return cb((data) => {
+    cb((data) => {
       this.isDone = true;
       this.state = data;
       return this.onFulfilledCallbacks.forEach((fn) => fn(data));

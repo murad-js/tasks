@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
-import { PurchaseIterator } from "./PurchaseIterator.js";
-import { Basket } from "./Basket.js";
+import { PurchaseIterator } from './PurchaseIterator.js';
+import { Basket } from './Basket.js';
 
 const purchase = [
-  { name: "Laptop", price: 1500 },
-  { name: "Mouse", price: 25 },
-  { name: "Keyboard", price: 100 },
-  { name: "HDMI cable", price: 10 },
-  { name: "Bag", price: 50 },
-  { name: "Mouse pad", price: 5 },
+  { name: 'Laptop', price: 1500 },
+  { name: 'Mouse', price: 25 },
+  { name: 'Keyboard', price: 100 },
+  { name: 'HDMI cable', price: 10 },
+  { name: 'Bag', price: 50 },
+  { name: 'Mouse pad', price: 5 },
 ];
 
 const main = async () => {
@@ -17,8 +17,9 @@ const main = async () => {
   const basket = new Basket({ limit: 1050 });
 
   void (async () => {
-    await basket.toPromise().then(console.log);
-    console.log("Basket 🔝");
+    const resultBacket = await basket.toThenable();
+    console.log(resultBacket);
+    console.log('Basket 🔝');
   })();
 
   for await (const item of goods) {
