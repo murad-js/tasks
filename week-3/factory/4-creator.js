@@ -6,21 +6,36 @@ class Product {
   }
 }
 
+//  Solution using class
 class Creator {
-  #entity;
+  #args;
 
-  constructor(entity) {
-    this.#entity = entity;
+  constructor(...args) {
+    this.#args = args;
   }
 
-  factoryMethod(...args) {
-    return new this.#entity(...args);
+  factoryMethod() {
+    return new Product(...this.#args);
   }
 }
 
-// Usage
+//  Solution using closure
+const productFactory =
+  (...args) =>
+  () =>
+    new Product(...args);
 
-const creator = new Creator(Product);
+// Usage
+const arg = 'value';
+
+const creator = new Creator(arg);
 console.dir(creator);
-const product = creator.factoryMethod('value');
+
+const product = creator.factoryMethod();
 console.dir(product);
+
+const creatorClosure = productFactory(arg);
+console.log(creatorClosure.toString());
+
+const product2 = creatorClosure();
+console.dir(product2);

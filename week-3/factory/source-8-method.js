@@ -7,20 +7,14 @@ class Product {
 }
 
 class Creator {
-  #entity;
-
-  constructor(entity) {
-    this.#entity = entity;
-  }
-
   factoryMethod(...args) {
-    return new this.#entity(...args);
+    return new Product(...args);
   }
 }
 
 // Usage
 
-const creator = new Creator(Product);
+const creator = new Creator();
 console.dir(creator);
 const product = creator.factoryMethod('value');
 console.dir(product);
