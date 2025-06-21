@@ -16,22 +16,21 @@ type ColorKey = keyof typeof COLOR;
 type ColorValue = (typeof COLOR)[ColorKey];
 type LoggerOption = ColorKey | ColorValue;
 
-export const logger =
-  (option: LoggerOption = LogLevel.INFO) =>
-  (message: string) => {
-    let color = COLOR[option];
+export const logger = (option: LoggerOption = LogLevel.INFO) => {
+  let color = COLOR[option];
 
-    if (!color) {
-      for (const value of Object.values(COLOR)) {
-        if (value === option) {
-          color = value;
-        }
+  if (!color) {
+    for (const value of Object.values(COLOR)) {
+      if (value === option) {
+        color = value;
       }
     }
+  }
 
-    const date = new Date().toISOString();
-    console.log(`${color}${date}\t${message}`);
-  };
+  const date = new Date().toISOString();
+
+  return (message: string) => console.log(`${color}${date}\t${message}`);
+};
 
 const warning = logger(LogLevel.WARNING);
 warning('Hello warning');

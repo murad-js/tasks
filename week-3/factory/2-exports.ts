@@ -8,7 +8,7 @@ export class Person implements IPerson {
   constructor(public name: string) {}
 }
 
-export const factory = (args: string) => {
+export const personFactory = (args: string) => {
   return new Person(args);
 };
 
@@ -17,5 +17,5 @@ export const factory = (args: string) => {
 const p1 = new Person('Marcus');
 console.dir({ p1 });
 
-const p2 = factory('Marcus');
+const p2 = personFactory('Marcus');
 console.dir({ p2 });

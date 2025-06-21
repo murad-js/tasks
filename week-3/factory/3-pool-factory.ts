@@ -19,6 +19,8 @@ export const poolify = <T extends (...args: any) => any>({
   const factory = () => argFactory(...factoryOptions);
   const instances = new Array(poolSize).fill(null).map(factory);
 
+  // This pool implementation is from task description.
+  //  All fixes for pool functionality are in pool directory.
   const acquire = () => {
     const instance = instances.pop() || factory();
     console.log('Get from pool, count =', instances.length);
