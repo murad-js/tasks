@@ -5,7 +5,8 @@
   "author": "Murad Imanov",
   "scripts": {
     "format": "prettier --write .",
-    "ts-node": "ts-node $npm_filename"
+    "ts-node": "ts-node $npm_filename",
+    "ts-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "24.0.1",
