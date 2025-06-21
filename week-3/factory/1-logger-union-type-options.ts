@@ -27,9 +27,11 @@ export const logger = (option: LoggerOption = LogLevel.INFO) => {
     }
   }
 
-  const date = new Date().toISOString();
+  return (message: string) => {
+    const date = new Date().toISOString();
 
-  return (message: string) => console.log(`${color}${date}\t${message}`);
+    console.log(`${color}${date}\t${message}`);
+  };
 };
 
 const warning = logger(LogLevel.WARNING);
