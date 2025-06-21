@@ -5,6 +5,6 @@ import { Query } from './types.js';
 export class FileLineCursor extends Cursor {
   constructor(fileStorage: IFileStorage, query: Query);
   query: Query;
-  lines: AsyncIterator<string, undefined, any>;
-  [Symbol.asyncIterator](): AsyncIterator<any, undefined, any>;
+  lines: AsyncIterator<any>;
+  [Symbol.asyncIterator](): AsyncIterator<any>;
 }
