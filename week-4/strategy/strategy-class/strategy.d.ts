@@ -7,5 +7,4 @@ export class Strategy<T = any, TAction = any, THandler = any> {
     behaviour: Record<TAction[number], THandler>,
   ): void;
   getBehaviour(implementationName: T, actionName: TAction[number]): THandler;
-  #private;
 }
