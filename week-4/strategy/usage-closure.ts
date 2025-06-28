@@ -1,0 +1,48 @@
+import { createStrategy } from './strategy-closure';
+
+const Action = {
+  NOTIFY: 'notify',
+  MULTICAST: 'multicast',
+} as const;
+
+const Transport = {
+  EMAIL: 'email',
+  SMS: 'sms',
+} as const;
+
+type Transport = (typeof Transport)[keyof typeof Transport];
+type Action = (typeof Action)[keyof typeof Action];
+type Handler = Function;
+
+const NOTIFICATION_TRANSPORT_STRATEGY_NAME = 'transport';
+
+const { registerBehaviour, getBehaviour } = createStrategy<
+  Transport,
+  Action[],
+  Handler
+>(NOTIFICATION_TRANSPORT_STRATEGY_NAME, Object.values(Action));
+
+registerBehaviour(Transport.EMAIL, {
+  notify: (to, message) => {
+    console.log(`Sending "email" notification to <${to}>`);
+    console.log(`message length: ${message.length}`);
+  },
+  multicast: (message) => {
+    console.log(`Sending "email" notification to all`);
+    console.log(`message length: ${message.length}`);
+  },
+});
+
+registerBehaviour(Transport.SMS, {
+  notify: (to, message) => {
+    console.log(`Sending "sms" notification to <${to}>`);
+    console.log(`message length: ${message.length}`);
+  },
+  multicast: (message) => {
+    console.log(`Sending "sms" notification to all`);
+    console.log(`message length: ${message.length}`);
+  },
+});
+
+export const notify = getBehaviour(Transport.SMS, Action.NOTIFY);
+notify('+380501234567', 'Hello world');
