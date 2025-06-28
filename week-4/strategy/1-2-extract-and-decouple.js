@@ -1,11 +1,13 @@
 'use strict';
 
 const selectStrategy = (strategy, name = 'abstract') => {
-  if (Object.hasOwn(strategy, name)) {
-    return strategy[name];
+  let strategyName = name;
+
+  if (!Object.hasOwn(strategy, name)) {
+    strategyName = 'abstract';
   }
 
-  throw new Error('Abstract method does not implemented');
+  return strategy[strategyName];
 };
 
 const abstractRenderer = () => {
@@ -103,7 +105,7 @@ console.log(png(persons));
 console.groupEnd();
 
 console.group('\nConsoleRenderer:');
-console.table(con(persons));
+console.log(con(persons));
 console.groupEnd();
 
 console.group('\nWebRenderer:');
