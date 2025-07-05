@@ -4,11 +4,13 @@ export class Thenable {
   state = null;
 
   constructor(cb) {
-    cb((data) => {
-      this.isDone = true;
-      this.state = data;
-      return this.onFulfilledCallbacks.forEach((fn) => fn(data));
-    });
+    process.nextTick(() =>
+      cb((data) => {
+        this.isDone = true;
+        this.state = data;
+        return this.onFulfilledCallbacks.forEach((fn) => fn(data));
+      }),
+    );
   }
 
   then(onFulfilled) {
